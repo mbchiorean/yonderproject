@@ -11,6 +11,8 @@ from util.util import Anon
 from util.sessions import Session
 '''will store info about the user in the session '''
 '''usrtype : 1=Pm , 2=HR ,3=Developer or what else 4=sysadmin and 5=noauth employee '''
+
+            
 class BaseHandler(webapp2.RequestHandler):
 
     @webapp2.cached_property
@@ -68,6 +70,7 @@ class ProjectsList(BaseHandler):
             self.render_response("projects.html",**values)
         else:
             self.redirect("/nouser")
+
 class DelProject(webapp2.RequestHandler):
     def get(self):
         session = Session()
