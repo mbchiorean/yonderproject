@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Profile Page - {{employee.name}}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+		<script language="javascript" type="text/javascript" src="./js/datetimepicker.js"></script>
+	</head>
+<body>
+
+<img src="./images/yond.png" />
+<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+</br>
+<fieldset style="width:600px;">
+<legend id="legend-profile" >{{employee.name}} - Profile Page</legend>
+<p>User:  <b>{{employee.user.email()}}</b></p>
+<p>Position:  <b>{{employee.position}}</b></p>
+<p>Years of experience : <b>{{employee.years}}</b></p>
+<p><b>Skills :</b>
+<table summary="Projects" style="width:550px; margin-left:15px">
+    <thead>
+        <tr>
+            <th scope="col">Skill</th>
+            <th scope="col">Years/Skill</th>
+            <th scope="col" >Actions</th>
+        </tr>
+    </thead>
+    {% if noskills %}
+    {% for skill in skills %}
+    <tbody>
+    	<tr>
+    		<th>{{skill.skill.name}}</th>
+    		<th>{{skill.exp}}</th>
+    		<th>{% if owner %}<a href="/removeskill?skillid={{skill.skill.key().id()}}&emplid={{employee.key().id()}}" title="remove skill">{% endif %}<img src="./images/minimize.png" />
+    			{% if owner %}</a>{% endif %}</th>    	
+    	</tr>
+    </tbody>
+    {% endfor %}
+    {% endif %}
+</table>
+{% if owner %}
+<a id="displayText" href="javascript:toggle();" style="margin-left:500px;">add skill<img src="./images/maximize.png"/></a>
+<div id="toggleText" style="display: none">
+		<form action="/newskill" id="newProj" method="post">
+		<fieldset style="width:400px;">
+		<legend id="legend-proj" >add a new skill</legend>
+			<p>
+				<label for="skill">Name :</label>
+				<select name="skillId" id="skillId">
+					{% for allsk in allskills %}
+					<option value="{{allsk.key().id()}}">{{allsk.name}}</option>
+					{% endfor %}
+				</select>
+			</p>
+			<p>
+				<label for="years">Years Experoence :</label>
+				<input type="text" name="skillExperience" id="skillExperience" /><br />
+				<input type="hidden" name="employeeId" id="employeeId" value="{{employee.key().id()}}"/>	
+			</p>
+			<p class="submit">
+				<input type="submit" value="Add" />
+			</p>
+		</fieldset>
+		</form>
+</div>
+</p>
+</fieldset>
+
+
+
+<script language="javascript"> 
+function toggle() {
+	var ele = document.getElementById("toggleText");
+	var text = document.getElementById("displayText");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "add skill<img src=\"./images/maximize.png\"/>";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hide<img src=\"./images/minimize.png\"/>";
+	}
+} 
+</script>
+{% endif %}
+</body>
+</html>

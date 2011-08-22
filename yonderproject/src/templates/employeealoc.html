@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Employees</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+	</head>
+<body>
+	<img src="./images/yond.png" />
+	<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+	</br>
+{% if noemplonthis %}
+	<table summary="Projects">
+    <caption>Employees Currently on  <b>{{project.name}}</b></caption>
+    <thead>
+        <tr>
+            <th scope="col">Employee Name</th>
+            <th scope="col">User</th>
+            <th scope="col">Position</th>
+            <th scope="col">Years Experience</th>
+            <th scope="col">Remove Empl from Project</th>
+        </tr>
+    </thead>
+    {% for empl in employeesonthis %}
+	<tr>
+    	<th> {{empl.name}}</th>
+    	<th> {{empl.user}}</th>
+    	<th> {{empl.position}}</th>
+    	<th> {{empl.years}}</th>
+    	<th><a href="/empldealoc?emplid={{empl.key().id()}}&projid={{project.key().id()}}" title="dealocate employee"><img src="./images/remove.png" /></a> </th>
+    </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+</br>
+{% if noempl %}
+	<table summary="Projects">
+    <caption>Alocate employees on <b>{{project.name}}</b></caption>
+    <thead>
+        <tr>
+            <th scope="col">Employee Name</th>
+            <th scope="col">User</th>
+            <th scope="col">Position</th>
+            <th scope="col">Years Experience</th>
+            <th scope="col">Add Empl on Project</th>
+        </tr>
+    </thead>
+	{% for employee in employees %}
+	<tr>
+    	<th> {{employee.name}}</th>
+    	<th> {{employee.user}}</th>
+    	<th> {{employee.position}}</th>
+    	<th> {{employee.years}}</th>
+    	<th><a href="/emplaloc?projid={{project.key().id()}}&emplid={{employee.key().id()}}" title="alocate employee"><img src="./images/add.png" /></a> </th>
+    </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+</br>
+<a href="/projects" title="go back to projects"><img src="./images/back.png" /></a>
+</body>
+</html>

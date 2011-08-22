@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Projects</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/datepickertheme/jquery.ui.all.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+
+		<script language="javascript" type="text/javascript" src="./js/jquery-1.6.2.js"></script>
+		<script language="javascript" type="text/javascript" src="./js/jquery.ui.core.js"></script>
+		<script language="javascript" type="text/javascript" src="./js/jquery.ui.widget.js"></script>
+		<script language="javascript" type="text/javascript" src="./js/jquery.ui.datepicker.js"></script>
+		<script language="javascript" type="text/javascript" src="./js/jquery.ui.datepicker-sv.js"></script>
+	</head>
+<body>
+<img src="./images/yond.png" />
+<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+</br>
+</p>
+<form action="/editproj" id="editproj"  method="post">
+<fieldset style="width:600px;">
+<legend id="legend-proj" >edit project</legend>
+<p><label for="name">Name :</label> <input type="text" name="projName" id="projName" value="{{project.name}}"/></p>
+<p><label for="e-mail">Type :</label> <input type="text" name="projType" id="projType" value="{{project.type}}"/><br /></p>
+<p><label for="description">Description :</label> <textarea rows="4" cols="25" name="projDescription" id="projDescription">{{project.description}}</textarea></p>
+<p>
+	<label for="startdate">Start Date :</label>
+	<input type="text" name="projStartD" id="projStartD" value="{{project.startdate}}" />
+</p>
+<p> 
+	<label for="enddate">End Date :</label>
+	<input type="text" name="projEndD" id="projEndD" value="{{project.enddate}}"/>
+</p>
+<p>
+	<label for="pmid">PM id :</label>
+	<input type="text" name="projPmId" id="projPmId" value="{{project.pmid}}" />
+	<input type="hidden" name="projId" id="projId" value="{{id}}" />
+</p>
+<p class="submit">
+	<input type="submit" value="Edit"/>
+	<input type="button" value="Cancel" onClick="location.href='/'"/>
+</p>
+</fieldset>
+</form>
+<script>
+	$(function() {
+		$( "#projEndD" ).datepicker({
+			showOn: "button",
+			buttonImage: "images/cal.png",
+			buttonImageOnly: true
+		});
+	});
+	$(function() {
+		$( "#projStartD" ).datepicker({
+			showOn: "button",
+			buttonImage: "images/cal.png",
+			buttonImageOnly: true
+		});
+	});
+</script>
+</body>
+</html>

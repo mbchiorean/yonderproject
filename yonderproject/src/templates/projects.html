@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Projects</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+	</head>
+<body>
+
+<img src="./images/yond.png" />
+<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+</br>
+
+
+<table summary="Projects" style="width:700px;">
+    <caption>Projects<a class ="add-proj" href="/newprojpage"><img src="./images/add_pr.png"/> Add project</a></caption>
+    {% if noprojects %}
+    <thead>
+        <tr>
+            <th scope="col">Project Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Project Manager</th>
+            <th scope="col" style="width:85px">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for project in projects %}
+    	<tr>
+            <th> {{project.name}}</th>
+            <td> {{project.type}}</td>
+            <td> {{project.description}}</td>
+            <td> {{project.startdate}}</td>
+            <td> {{project.enddate}}</td>
+            <td> Chiorean B</td>
+            <td>
+            	<a title="edit entry" href="/editprojpage?id={{project.key().id()}}"><img src="./images/edit.png" /></a>&nbsp;|&nbsp;
+            	<a title="delete entry" href="/delproj?id={{project.key().id()}}"><img src="./images/del.png" /></a>&nbsp;|&nbsp;
+            	<a title="employee alocation" href="/emplalocpage?id={{project.key().id()}}" ><img src="./images/addusr.png"/></a>&nbsp;
+            </td>
+        </tr>
+	{% endfor %}
+	</tbody>
+	{% endif%}
+</table>
+
+
+
+
+
+</body>
+</html>

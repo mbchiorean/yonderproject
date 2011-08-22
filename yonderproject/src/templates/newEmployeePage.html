@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>New Employee</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+	</head>
+<body>
+	<img src="./images/yond.png" />
+	<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+	</br>
+<form action="/newempl" id="newEmpl" method="post">
+<fieldset style="width:600px;">
+<legend id="legend-proj" >Add a new Employee</legend>
+<p><label for="name">Name :</label> <input type="text" name="emplName" id="emplName" /></p>
+<p><label for="user">User :</label> <input type="text" name="user" id="user" /><br /></p>
+<p>
+	<label for="Position">Position :</label>
+	<select name="emplPosition" id="emplPosition">
+	  <option value="Project Manager">Project Manager</option>
+	  <option value="Developer">Developer</option>
+	  <option value="Tester">Tester</option>
+	  <option value="HR">HR</option>
+	</select>
+</p>
+<p><label for="exp">Years Exp :</label> <input type="text" name="emplExp" id="emplExp" /><br /></p>
+<p class="submit">
+	<input type="submit" value="Create" />
+	<input type="button" value="Cancel" onClick="location.href='/employees'"/>
+</p>
+</fieldset>
+</form>

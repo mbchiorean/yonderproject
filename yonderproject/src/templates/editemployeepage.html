@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Projects</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+		<script language="javascript" type="text/javascript" src="./js/datetimepicker.js"></script>
+	</head>
+<body>
+
+<img src="./images/yond.png" />
+<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+</br>
+</p>
+<form action="/editemployee" id="editproj"  method="post">
+<fieldset style="width:600px;">
+<legend id="legend-proj" >Edit Employee</legend>
+<p><label for="name">Name :</label> <input type="text" name="emplName" id="emplName" value="{{employee.name}}"/></p>
+<p><label for="e-mail">User :</label> <input type="text" name="emplUser" id="emplUser" value="{{employee.user.email()}}"/><br /></p>
+<p>
+	<label for="Position">Position :</label>
+	<select name="emplPosition" id="emplPosition">
+	  <option value="Project Manager"{% if employee.position == "Project Manager" %}selected="selected"{% endif %}>Project Manager</option>
+	  <option value="Developer" {% if employee.position == "Developer" %}selected="selected"{% endif %}>Developer</option>
+	  <option value="Tester" {% if employee.position == "Tester" %}selected="selected"{% endif %}>Tester</option>
+	  <option value="HR" {% if employee.position == "HR" %}selected="selected"{% endif %}>HR</option>
+	</select>
+</p>
+<p><label for="exp">Years Exp :</label> <input type="text" name="emplExp" id="emplExp" value="{{employee.years}}"/></p>
+<p class="submit">
+	<input type="submit" value="Edit Employee"/>
+	<input type="button" value="Cancel" onClick="location.href='/employees'"/>
+	<input type="hidden" name="emplId" id="emplId" value="{{employee.key().id()}}" />
+</p>
+</fieldset>
+</form>
+</body>
+</html>

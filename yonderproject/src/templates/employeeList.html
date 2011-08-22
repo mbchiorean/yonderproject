@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Employees</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+	</head>
+<body>
+	<img src="./images/yond.png" />
+	<p class="log-link" style=" float:right; margin-top:-4px;"><a href="{{url}}"><b>Sign out</b></a><p>
+	<table summary="Projects">
+    <caption>Employees<a class ="add-proj" href="/newemployee"><img src="./images/add_pr.png"/> Add</a></caption>
+    {% if noemployees %}
+    <thead>
+        <tr>
+            <th scope="col">Employee Name</th>
+            <th scope="col">User</th>
+            <th scope="col">Position</th>
+            <th scope="col">Years Experience</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    {% for employee in employees %}
+    <tr>
+    	<th> {{employee.name}}</th>
+    	<td> {{employee.user}}</td>
+    	<td> {{employee.position}}</td>
+    	<td> {{employee.years}}</td>
+    	<td>
+    		<a href="/profilepage?emplid={{employee.key().id()}}" title="view user profile"><img src="./images/profile.png" /></a>&nbsp;|&nbsp;
+    		<a href="/editempl?emplid={{employee.key().id()}}" title="edit employee details"><img src="./images/edit.png" /></a>&nbsp;|&nbsp;
+    		<a href="/delempl?emplid={{employee.key().id()}}" title="delete employee"><img src="./images/del.png" /></a>
+    </tr>
+    {% endfor %}
+    {% endif%}
+    </table>
+
+</body>
+</html>
